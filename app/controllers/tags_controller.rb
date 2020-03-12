@@ -6,6 +6,14 @@ class TagsController < ApplicationController
         @tags = Tag.all
 
     end
+
+    before_action :require_login, only: [:destroy]
+    def require_login
+        unless logged_in? == true
+            redirect_to root_path
+        end
+    end
+
     def destroy
         @tag = Tag.find(params[:id])
         @tag.destroy

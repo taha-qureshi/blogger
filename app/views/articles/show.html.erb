@@ -14,9 +14,13 @@
 </p>
 
 <p><%= @article.body %></p>
+<% if logged_in? %>
 <%= link_to "delete", article_path(@article), method: :delete, data: {confirm: "Really delete the article?"}
  %>
+ <% end %>
+ <% if logged_in? %>
  <%= link_to "edit", edit_article_path(@article) %>
+ <% end %>
 
 <%= render partial: 'comments/form' %>
 

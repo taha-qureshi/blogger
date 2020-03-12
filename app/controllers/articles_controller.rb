@@ -1,6 +1,14 @@
 class ArticlesController < ApplicationController
     include ArticlesHelper
 
+    before_action :require_login, except: [:index, :show]
+    def require_login
+        unless logged_in? == true
+            redirect_to root_path
+        end
+    end
+
+
     def index
         @articles = Article.all 
     end
